@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<servlet>
+		<servlet-name>client-management-config</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>client-management-config</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter
+		</filter-class>
+
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/client-management-config-servlet.xml
+			</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- <security-constraint>
+             <display-name>SecurityConstraint</display-name>
+            <web-resource-collection>
+                  <web-resource-name>WRCollection</web-resource-name>
+                 <url-pattern>/*</url-pattern>
+         </web-resource-collection>
+            <auth-constraint>
+                  <role-name>Admin</role-name>
+            </auth-constraint>
+            <user-data-constraint>
+                <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+            </user-data-constraint>
+       </security-constraint>
+      <login-config>
+            <auth-method>FORM</auth-method>
+         <form-login-config>
+                  <form-login-page>/WEB-INF/views/index.jsp</form-login-page>
+                 <form-error-page>/WEB-INF/views/client/inquiryForm.jsp</form-error-page>
+          </form-login-config>
+     </login-config>
+     <security-role>
+        <role-name>Admin</role-name>
+    </security-role> -->
+</web-app>
