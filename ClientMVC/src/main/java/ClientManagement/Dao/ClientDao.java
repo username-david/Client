@@ -35,6 +35,15 @@ public class ClientDao implements EntityDao<Client> {
 		return client;
 	}
 
+	public int isIDNumberSaved(String idNumber) {
+
+		List<Client> clientList = getAll();
+		Client client = clientList.stream().filter(t -> idNumber.equals(t.getIdentityNumber())).findFirst()
+				.orElse(null);
+
+		return (client == null) ? 0 : 1;
+	}
+
 	public List<Client> findClientByNameOrderByName(String id) {
 
 		List<Client> clientList = new ArrayList<Client>();
@@ -72,26 +81,17 @@ public class ClientDao implements EntityDao<Client> {
 		return jdbcTemplate.update(sqlQuery.toString());
 	}
 
-	public void updateClient() {
+	public void updateClient(String id) {
 
 		StringBuilder sqlQuery = new StringBuilder();
+		Client client = findClientById(id);
 		sqlQuery.append("update client ");
 		sqlQuery.append("set ? = ?, ? = ?, ? = ?, ? = ?, ? = ?, ? = ?, ? = ?, ? = ? ");
 		sqlQuery.append("where [Client Number]=?");
 
-		Client client = new Client();
-		client.setFirstName("Hoai");
-		client.setLastName("Ho");
-		client.setGenderId(2);
-		client.setDateOfBirth(new Date());
-		client.setIdentityNumber("187657343");
-		client.setAddress("Quynh Luu");
-		client.setCountryId(2);
-		client.setMaritalId(1);
-
 		jdbcTemplate.update(sqlQuery.toString(), client.getFirstName(), client.getLastName(), client.getGenderId(),
 				client.getDateOfBirth(), client.getIdentityNumber(), client.getMaritalId(), client.getAddress(),
-				client.getCountryId(), "CN000018");
+				client.getCountryId(), id);
 	}
 
 }

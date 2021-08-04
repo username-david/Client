@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class DateValidation {
 
-	public static int compareWithCurrentDate(Date date) {
+	public static int isFutureDate(Date date) {
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -14,9 +14,9 @@ public class DateValidation {
 		calendar.set(Calendar.MILLISECOND, 0);
 
 		Date currentDate = calendar.getTime();
-		if (date.after(currentDate) || date.before(currentDate)) {
-			return 0;
+		if (date.after(currentDate)) {
+			return 1;
 		}
-		return 1;
+		return 0;
 	}
 }

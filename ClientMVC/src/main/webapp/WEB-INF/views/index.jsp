@@ -5,6 +5,10 @@
 <body>
 	<div style="height: 30px; background-color: darkcyan;"></div>
 	<h3>Welcome to DXC Technology</h3>
+	
+	<p>${count}</p>
+	<p>${isFututeDate}</p>
+	<p>${isUsedID}</p>
 	<c:if test="${count > 0 }">
 		<p><spring:message code="message.addingSucceeded" /></p>
 	</c:if>

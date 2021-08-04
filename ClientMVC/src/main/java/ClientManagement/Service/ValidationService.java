@@ -2,16 +2,19 @@ package ClientManagement.Service;
 
 import java.util.Date;
 
-import ClientManagement.Util.DateValidation;
-import ClientManagement.Util.IDValidation;
+import org.springframework.stereotype.Service;
 
+import ClientManagement.Util.DateValidation;
+import ClientManagement.Util.ClientAddingValidation;
+
+@Service
 public class ValidationService {
 
-	public static int checkIDNumber(String idNumber) {
-		return IDValidation.checkIDNumber(idNumber);
+	public static boolean isAbleToAdd(int isFutureDate, int isUsedId) {
+		return ClientAddingValidation.isAbleToAdd(isUsedId, isFutureDate);
 	}
 
-	public static int compareWithCurrentDate(Date date) {
-		return DateValidation.compareWithCurrentDate(date);
+	public static int isFutureDate(Date date) {
+		return DateValidation.isFutureDate(date);
 	}
 }

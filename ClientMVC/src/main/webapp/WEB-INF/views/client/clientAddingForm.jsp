@@ -12,7 +12,31 @@
 <body>
 	<!-- <%-- Color bar. --%> -->
 	<div style="height: 30px; background-color: darkcyan;"></div>
-	
+
+	<c:if test="${count > 0 }">
+		<p>
+			<spring:message code="message.addingSucceeded" />
+		</p>
+	</c:if>
+	<c:if test="${count == 0 }">
+		<p>
+			<spring:message code="message.addingFailed" />
+		</p>
+	</c:if>
+	${count}
+	${isUsedID}
+	${isFututeDate}
+	<c:if test="${isUsedID > 0 }">
+		<p class="error_message">
+			<spring:message code="error.checkId" />
+		</p>
+	</c:if>
+	<c:if test="${isFututeDate > 0 }">
+		<p class="error_message">
+			<spring:message code="error.checkDate" />
+		</p>
+	</c:if>
+
 	<h1 id="page_name">Client adding form</h1>
 	<div id="whole">
 
@@ -20,37 +44,40 @@
 			modelAttribute="client">
 			<table>
 				<tr>
-					<td><label class="required"><spring:message code="lbl.firstName" /></label></td>
-					<td><form:input type="text" path="firstName" id="same_width"
-							/></td>
+					<td><label class="required"><spring:message
+								code="lbl.firstName" /></label></td>
+					<td><form:input type="text" path="firstName" id="same_width" /></td>
 				</tr>
 				<tr>
-					<td><label class="required"><spring:message code="lbl.lastName" /></label></td>
+					<td><label class="required"><spring:message
+								code="lbl.lastName" /></label></td>
 					<td><form:input type="text" path="lastName" id="same_width"
-							required="required"  /></td>
+							required="required" /></td>
 				</tr>
 				<tr>
-					<td id="top_left"><label class="required"><spring:message code="lbl.gender" /></label></td>
-					<td><form:select path="genderId" id="genders"
-							>
+					<td id="top_left"><label class="required"><spring:message
+								code="lbl.gender" /></label></td>
+					<td><form:select path="genderId" id="genders">
 							<c:forEach var="item" items="${genders}">
 								<option value="${item.id }">${item.genderSymbol}</option>
 							</c:forEach>
 						</form:select></td>
 				</tr>
 				<tr>
-					<td><label><spring:message code="lbl.dateOfBirth" /></label></td>
+					<td><label class="required"><spring:message
+								code="lbl.dateOfBirth" /></label></td>
 					<td><form:input type="date" path="dateOfBirth" id="same_width"
-							 required="required" /></td>
-				</tr>
-				<tr>
-					<td><label><spring:message code="lbl.identityNumber" /></label></td>
-					<td><form:input type="text" path="identityNumber"
-							id="same_width" 
 							required="required" /></td>
 				</tr>
 				<tr>
-					<td id="top_left"><label class="required"><spring:message code="lbl.maritalStatus" /></label></td>
+					<td><label class="required"><spring:message
+								code="lbl.identityNumber" /></label></td>
+					<td><form:input type="text" path="identityNumber"
+							id="same_width" required="required" /></td>
+				</tr>
+				<tr>
+					<td id="top_left"><label class="required"><spring:message
+								code="lbl.maritalStatus" /></label></td>
 					<td><form:select path="maritalId" id="martialStates">
 							<c:forEach var="marital" items="${maritals}">
 								<option value="${marital.id }">${marital.maritalSymbol}</option>
@@ -58,12 +85,14 @@
 						</form:select></td>
 				</tr>
 				<tr>
-					<td><label><spring:message code="lbl.address" /></label></td>
+					<td><label class="required"><spring:message
+								code="lbl.address" /></label></td>
 					<td><form:input type="text" path="address" id="same_width"
 							required="required" /></td>
 				</tr>
 				<tr>
-					<td id="top_left"><label class="required"><spring:message code="lbl.country" /></label></td>
+					<td id="top_left"><label class="required"><spring:message
+								code="lbl.country" /></label></td>
 					<td><form:select path="countryId" id="countries">
 							<c:forEach var="country" items="${countries}">
 								<option value="${country.id }">${country.countrySymbol}</option>

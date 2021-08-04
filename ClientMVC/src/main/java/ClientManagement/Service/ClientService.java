@@ -22,8 +22,12 @@ public class ClientService {
 		return clientDao.getAll();
 	}
 
-	public int addClient(Client client) throws ParseException  {
+	public int addClient(Client client) throws ParseException {
 		return clientDao.addClient(client);
+	}
+
+	public int isIDNumberSaved(String idNumber) throws ParseException {
+		return clientDao.isIDNumberSaved(idNumber);
 	}
 
 	public Client findClientById(String clientId) {
@@ -34,4 +38,7 @@ public class ClientService {
 		return clientDto.castToClientDto(client);
 	}
 
+	public void updateClient(String clientId) {
+		clientDao.updateClient(clientId);
+	}
 }
